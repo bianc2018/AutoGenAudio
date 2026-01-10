@@ -1,0 +1,25 @@
+input_dir   = "Out"
+output_dir  = "OutputAugment"
+audio_ext   = "wav"
+label_ext   = "csv"
+sample_rate = 16000
+num_workers = 8
+done_log    = "done.log"
+
+# 是否做组合（布尔）
+combine     = true
+# 组合最大长度
+max_combine = 2
+
+# 下面只写你需要改默认参数的类，没写的类就用空参构造
+[params.AddGaussianNoise]
+min_amplitude = 0.001
+max_amplitude = 0.015
+
+[params.Delay]
+min_delay = 100
+max_delay = 500
+sample_rate = 16000   # 与全局保持一致
+
+[params.TimeMask]
+mask_duration = 0.05

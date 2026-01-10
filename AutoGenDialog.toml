@@ -1,0 +1,16 @@
+# 接口配置
+api_base = "https://api.moonshot.cn/v1"
+api_key = "sk-SHp7OZ0gKy1CHQ1FkWRbiuzC1CRy7hf32gDI1GWdcMrQiGzb"          # 没有就留空字符串 ""
+model = "kimi-k2-turbo-preview"
+
+# 生成配置
+prompt_file = "DialogPrompts.txt"   # 每行一个聊天主题
+dialogue_per_topic = 100        # 每个主题生成多少个对话
+turn_range = [100, 300]           # 每对话随机轮数区间（闭区间）
+role_pool = ["S1", "S2", "S3", "S4"]# 可选角色，脚本每次随机选 2~3 人
+temperature = 0.1
+max_tokens = 120000 
+retry = 3                     # 单条失败重试次数
+
+# 输出配置
+output_dir = "./Scripts/"

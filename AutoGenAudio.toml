@@ -1,0 +1,52 @@
+# AutoGenAudio 配置文件模板
+# 已修复 Kokoro 模型配置
+
+# ==================== 模型配置 ====================
+[model]
+backend = "kokoro"
+
+[model.audio_ref]
+max_sentences = 20
+save_temp_to_refs = true
+
+# FireRedTTS2 - 支持版本: v1.0.1
+[model.fireredtts2]
+pretrained_dir = "./pretrained_models/fireredtts2"
+model_version = "v1.0.1"
+
+# Kokoro - 修复了配置方式
+[model.kokoro]
+pretrained_dir = "./pretrained_models/Kokoro-82M-v1.1-zh"
+# 直接指定模型文件名（不是版本号）
+model_file = "kokoro-v1_1-zh.pth"
+# 语言代码: a=多语言, b=英语, z=中文
+lang_code = "z"
+
+# 角色音色映射配置
+[model.kokoro.voice_mapping]
+# 格式：角色名 = [音色文件名列表（不带.pt后缀）]
+# 重要：一旦角色配置了音色列表，在同一会话中所有该角色的对话将使用相同的音色
+# （第一次随机选择，后续重复使用）
+S1 = ["zm_009", "zf_001"]  # S1 第一次随机使用其中一个，后续保持
+S2 = ["zm_009"]             # S2 固定使用这个音色
+S3 = ["zm_009"]
+S4 = ["zm_009"]
+# 如果角色未配置或列表为空，则从所有音色中随机选择（每次对话独立）
+
+# Higgs - 支持版本: v2_base, v2_large
+[model.higgs]
+pretrained_dir = "./pretrained_models/Higgs-Audio-V2"
+model_version = "v2_base"
+
+# VibeVoice - 支持版本: 0.5b, 1.5b
+[model.vibevoice]
+pretrained_dir = "./pretrained_models/VibeVoice-1.5B"
+model_version = "1.5b"
+
+# ==================== 路径和设备 ====================
+[paths]
+scripts_dir = "./scripts"
+output_dir = "./output"
+
+[device]
+device = "cuda"
