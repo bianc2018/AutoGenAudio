@@ -1,0 +1,30 @@
+# AutoEvalAudio 配置文件
+
+[paths]
+# 数据集目录，包含(.wav, .csv)组合的测试数据
+dataset_dir = "./output"
+# 评估结果输出目录
+output_dir = "./results"
+
+[models]
+# 模型列表，支持多个模型并行评估
+model_list = [
+    # 简化配置示例：只需要模型目录和模型架构
+    {name = "sherpa_onnx_simple", type = "sherpa_onnx", model_type = "asr", model_dir = "D:\\code\\sherpa-onnx\\asr-models\\sherpa-onnx-streaming-zipformer-zh-14M-2023-02-23\\sherpa-onnx-streaming-zipformer-zh-14M-2023-02-23", model_architecture = "zipformer", sample_rate = 16000, num_threads = 4, provider = "cpu"},
+    # FunASR WebSocket模型
+    #{name = "funasr_ws_service", type = "funasr_ws", websocket_url = "ws://localhost:8000", sample_rate = 16000, chunk_size = 8000, chunk_interval = 0.5}
+]
+
+[evaluation]
+# 评估指标列表
+metrics = ["wer", "cer", "cpcer", "sacer"]
+# 是否启用并行评估
+parallel = true
+# 最大工作线程数
+max_workers = 4
+
+[logging]
+# 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL
+level = "INFO"
+# 日志格式
+format = "%(asctime)s [%(levelname)s] %(message)s"
